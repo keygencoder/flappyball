@@ -1,3 +1,10 @@
-window_size = 320, 240  # 窗口大小
-
-game_background_color = 255, 255, 1
+window_name = 'flappyball by keygencoder'
+game_frame = 60
+window_size_x = 320
+window_size_y = 240
+window_size = window_size_x, window_size_y
+game_background_color = 0, 255, 255
+gravity = 700
+ball_color = 255, 106, 106
+ball_radius = 6
+ball_jump_speed = -300
