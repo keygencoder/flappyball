@@ -8,11 +8,9 @@ class Ball(object):
         self._screen = screen
         self._x = int(window_size_x * 0.2)
         self._y = int(window_size_y * 0.5)
-        self._radius = ball_radius
-        self._color = ball_color
         self._speed = 0
-        self._top = self._radius
-        self._floor = window_size_y - self._radius
+        self._top = ball_radius
+        self._floor = window_size_y - ball_radius
         self.jump = False
         self.dead = False
 
@@ -30,4 +28,4 @@ class Ball(object):
         self.draw()
 
     def draw(self):
-        pygame.draw.circle(self._screen, self._color, [self._x, self._y], self._radius, 0)
+        pygame.draw.circle(self._screen, ball_color, [self._x, self._y], ball_radius, 0)
