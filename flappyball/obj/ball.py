@@ -6,8 +6,8 @@ from flappyball.config import *
 class Ball(object):
     def __init__(self, screen):
         self._screen = screen
-        self._x = int(window_size_x * 0.2)
-        self._y = int(window_size_y * 0.5)
+        self._x = ball_x
+        self._y = 0
         self._speed = 0
         self._top = ball_radius
         self._floor = window_size_y - ball_radius
