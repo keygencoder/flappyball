@@ -25,7 +25,6 @@ class Ball(object):
             self.jump = False
         else:
             self._speed += gravity * frame_time
-        self.draw()
 
     def draw(self):
         pygame.draw.circle(self._screen, ball_color, [self._x, self._y], ball_radius, 0)
