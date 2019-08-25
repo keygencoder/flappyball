@@ -32,6 +32,16 @@ class Pipeline(object):
     def first_time_been_jumped(self):
         if self._jumped is True:
             return False
-        if self._x + pipeline_length <= ball_x:
+        if self._x + pipeline_length <= ball_x_start:
             self._jumped = True
             return True
+
+    def is_hit_ball(self, ball_x, ball_y):
+        if (ball_y < self._y_up + ball_radius) or (ball_y > self._y_down - ball_radius):
+            if (ball_x > self._x - ball_radius) and (ball_x < self._x + pipeline_length + ball_radius):
+                return True
+        if (self._x - ball_x) * (self._x - ball_x) + (self._y_up - ball_y) * (self._y_up - ball_y) < ball_radius * ball_radius:
+            return True
+        if (self._x - ball_x) * (self._x - ball_x) + (self._y_down - ball_y) * (self._y_down - ball_y) < ball_radius * ball_radius:
+            return True
+        return False

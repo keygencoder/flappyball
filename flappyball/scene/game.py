@@ -13,6 +13,7 @@ class Game(object):
         self._font = pygame.font.SysFont(None, game_font_size)
         self._score = 0
         self._highest_score = highest_score
+        self._dead = False
 
     def run(self):
         clock = pygame.time.Clock()
@@ -25,7 +26,7 @@ class Game(object):
                     sys.exit()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     return self._highest_score
-                if (event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN) and not ball.dead:
+                if (event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN) and not self._dead:
                     ball.jump = True
             self._screen.fill(game_background_color)
             pipelines_new = []
@@ -42,6 +43,8 @@ class Game(object):
                 pipeline.draw()
             ball.update(frame_time)
             ball.draw()
+            if self._check_dead(ball, pipelines):
+                return self._highest_score
             self._update_score(pipelines)
             pipelines = pipelines_new
             pygame.display.update()
@@ -53,3 +56,10 @@ class Game(object):
         self._highest_score = max(self._score, self._highest_score)
         score_text = self._font.render('score: ' + str(self._score) + ' highest: ' + str(self._highest_score), True, text_color)
         self._screen.blit(score_text, (0, 0))
+
+    def _check_dead(self, ball, pipelines):
+        ball_x, ball_y = ball.get_position()
+        for pipeline in pipelines:
+            if pipeline.is_hit_ball(ball_x, ball_y):
+                return True
+        return False
