@@ -8,11 +8,11 @@ from flappyball.obj.pipeline import Pipeline
 
 
 class Game(object):
-    def __init__(self, screen):
+    def __init__(self, screen, highest_score):
         self._screen = screen
         self._font = pygame.font.SysFont(None, game_font_size)
         self._score = 0
-        self._highest_score = 0
+        self._highest_score = highest_score
 
     def run(self):
         clock = pygame.time.Clock()
@@ -21,10 +21,10 @@ class Game(object):
         while True:
             frame_time = clock.tick(game_frame) / 1000
             for event in pygame.event.get():
-                if event.type == pygame.QUIT or event.type == pygame:
+                if event.type == pygame.QUIT:
                     sys.exit()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                    sys.exit()
+                    return self._highest_score
                 if (event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN) and not ball.dead:
                     ball.jump = True
             self._screen.fill(game_background_color)
