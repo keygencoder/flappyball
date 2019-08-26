@@ -54,12 +54,14 @@ class Game(object):
             if pipeline.first_time_been_jumped():
                 self._score += 1
         self._highest_score = max(self._score, self._highest_score)
-        score_text = self._font.render('score: ' + str(self._score) + ' highest: ' + str(self._highest_score), True, text_color)
+        score_text = self._font.render('score: ' + str(self._score) + ' highest: ' + str(self._highest_score), True,
+                                       text_color)
         self._screen.blit(score_text, (0, 0))
 
     def _check_dead(self, ball, pipelines):
         ball_x, ball_y = ball.get_position()
         for pipeline in pipelines:
             if pipeline.is_hit_ball(ball_x, ball_y):
+                self._dead = True
                 return True
         return False
