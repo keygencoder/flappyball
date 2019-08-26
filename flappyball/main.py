@@ -10,6 +10,6 @@ from flappyball.config import *
 from flappyball.scene.title import Title
 
 pygame.init()
-pygame.display.set_caption(game_name)
+pygame.display.set_caption('flappyball by keygencoder')
 screen = pygame.display.set_mode((window_size_x, window_size_y))
 Title(screen).run()

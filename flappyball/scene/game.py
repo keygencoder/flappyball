@@ -10,6 +10,7 @@ from flappyball.obj.pipeline import Pipeline
 class Game(object):
     def __init__(self, screen, highest_score):
         self._screen = screen
+        game_font_size = int(window_size_y * 0.1)
         self._font = pygame.font.SysFont(None, game_font_size)
         self._score = 0
         self._highest_score = highest_score
