@@ -14,10 +14,10 @@ class Game(object):
         self._score = 0
         self._highest_score = highest_score
         self._dead = False
+        self._ball = Ball(self._screen)
 
     def run(self):
         clock = pygame.time.Clock()
-        ball = Ball(self._screen)
         pipelines = [Pipeline(self._screen, window_size_x)]
         while True:
             frame_time = clock.tick(game_frame) / 1000
@@ -27,7 +27,7 @@ class Game(object):
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     return self._highest_score
                 if (event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN) and not self._dead:
-                    ball.jump = True
+                    self._ball.jump = True
             self._screen.fill(game_background_color)
             pipelines_new = []
             for pipeline in pipelines:
@@ -41,25 +41,25 @@ class Game(object):
                 pipelines_new.append(child)
             for pipeline in pipelines_new:
                 pipeline.draw()
-            ball.update(frame_time)
-            ball.draw()
-            if self._check_dead(ball, pipelines):
+            self._ball.update(frame_time)
+            self._ball.draw()
+            if self._check_dead(pipelines):
                 return self._highest_score
             self._update_score(pipelines)
             pipelines = pipelines_new
             pygame.display.update()
 
     def _update_score(self, pipelines):
+        ball_x, ball_y = self._ball.get_position()
         for pipeline in pipelines:
-            if pipeline.first_time_been_jumped():
+            if pipeline.first_time_been_jumped(ball_x):
                 self._score += 1
         self._highest_score = max(self._score, self._highest_score)
-        score_text = self._font.render('score: ' + str(self._score) + ' highest: ' + str(self._highest_score), True,
-                                       text_color)
+        score_text = self._font.render('score: ' + str(self._score) + ' highest: ' + str(self._highest_score), True, text_color)
         self._screen.blit(score_text, (0, 0))
 
-    def _check_dead(self, ball, pipelines):
-        ball_x, ball_y = ball.get_position()
+    def _check_dead(self, pipelines):
+        ball_x, ball_y = self._ball.get_position()
         for pipeline in pipelines:
             if pipeline.is_hit_ball(ball_x, ball_y):
                 self._dead = True

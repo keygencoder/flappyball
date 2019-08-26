@@ -29,10 +29,10 @@ class Pipeline(object):
             return None
         return Pipeline(self._screen, new_x)
 
-    def first_time_been_jumped(self):
+    def first_time_been_jumped(self, ball_x):
         if self._jumped is True:
             return False
-        if self._x + pipeline_length <= ball_x_start:
+        if self._x + pipeline_length <= ball_x:
             self._jumped = True
             return True
 

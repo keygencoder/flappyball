@@ -13,7 +13,6 @@ pipeline_color = 0, 139, 0
 title_font_size = int(window_size_y * 0.1)
 game_font_size = int(window_size_y * 0.1)
 
-ball_x_start = int(window_size_x * 0.2)
 ball_radius = int(window_size_y * 0.025)
 ball_jump_speed = -ball_radius * 55
 
