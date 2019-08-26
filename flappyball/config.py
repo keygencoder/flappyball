@@ -13,5 +13,5 @@ ball_jump_speed = -ball_radius * 55
 
 pipeline_length = ball_radius * 2
 pipeline_free_space_length = ball_radius * 18
-pipeline_distance = ball_radius * 13
-pipeline_horizontal_speed = -ball_radius * 6
+pipeline_distance = ball_radius * 18
+pipeline_horizontal_speed = -ball_radius * 25
