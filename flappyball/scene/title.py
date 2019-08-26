@@ -29,7 +29,7 @@ class Title(object):
 
     def _show_title(self):
         self._screen.fill(game_background_color)
-        background = pygame.image.load("assets/title_background.png")
+        background = pygame.image.load("./assets/title_background.png")
         background = pygame.transform.scale(background, (window_size_x, window_size_y))
         self._screen.blit(background, (0, 0))
         score_text = self._font.render('highest: ' + str(self._highest_score), True, text_color)

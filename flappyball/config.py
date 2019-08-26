@@ -4,7 +4,7 @@ window_size_y = 240
 gravity = window_size_y * 4
 
 game_background_color = 211, 211, 211
-text_color = 0, 255, 255
+text_color = 0, 0, 255
 ball_color = 238, 0, 0
 pipeline_color = 0, 139, 0
 
